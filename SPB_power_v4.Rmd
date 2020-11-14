@@ -1,0 +1,279 @@
+---
+title: "<span style='font-size: 25px'>**School Protection Brigades power calculations** </style> "
+author: "Javier Osorio"
+date: "v.1.2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pwr)
+```
+
+### **Assumptions**
+
+The power calculation is based on the following assumptions:
+
+* Each School Protection Brigade (SPB) is considered as a unit of analysis 
+* The pool of potential units includes all 2,242 schools in Mexico City
+* The perimeter of interest has a radius of 300m around the school
+* The treatment and control schools are balanced
+* Violent crimes in the perimeter of interest are distributed as:
+  * Mean = 48.924
+  * Standard Deviation = 46.59
+* The menu of violent crimes includes 84 different crime categories.^[The specific violent crimes included in the sutdy are: Sexual Abuse; Sexual Harassment; Breaking and Entering; Threats; Attack on the Roads of Communication (Damage to Roads or Means of Transportation); Attack on the General Ways of Communication; Attacks on the Public Peace; Intentional Damage to Owned Property; Intentional Property Damage to Automobile; Intentional Property Damage to Real Estate Property; Intentional Property Damage to Home Room; Intentional Property Damage to Business; Intentional Damage to Own Property to Ways of Communication; Crimes Against Health (Drug trafficking); Forced Disappearance of Persons; Firearm Shots; Extortion; Feminicide; Homicide by White Gun; Homicide by Firearm; Homicide by Beating; Intentional Homicides (Other); Intimidation; Intentional Injuries; Intentional Injuries by White Weapon; Intentional Injuries by Firearm; Intentional Injuries from Strikes; Intentional Injuries and Vehicle Theft; Drug Possession for Purposes of Sale, Trade and Supply; Simple Drug Possession; Kidnapping; Carrying Prohibited Weapon; Carrying Firearm; Kidnapping and Vehicle Theft; Kidnapping; Kidnapping (To Perform A Sexual Act); Home Robbery Violence; Home Robbery and Vehicle with Violence; Business Robbery with Violence; Theft from Business and Vehicle with Violence; Robbery from Public Office with Violence; Theft of A Passenger / Taxi Driver with Violence; Robbery to Passenger on Board A Metro with Violence; Robbery to Passenger on Board A Metrobus with Violence; Robbery to Passenger on Board A Collective Bus with Violence; Robbery to Passenger on Board A Taxi with Violence; Robbery to Passenger on Board of Public Transportation with Violence; Robbery to Passenger on A Foreign Bus with Violence; Robbery to Passenger in Ecobus with Violence; Theft to Passenger in RTP with Violence; Robbery to Passenger in A Trolebus with Violence; Robbery to Dealer with Violence; Theft to Dealer and Vehicle with Violence; Theft to Bank Branch (Bank Assault) with Violence; Theft to Bank Branch (Supermarket) with Violence; Theft to Cell Phone with Violence; Robbery to Pedestrian in Hotel with Violence; Robbery to Pedestrian in Business with Violence; Robbery to Pedestrian in Parks and Markets with Violence; Robbery to A Restaurant with Violence; Robbery to Passenger in Passenger Terminal with Violence; Robbery to Bystanding on Public Road with Violence; Robbery to Pedestrian Leaving the Bank with Violence; Robbery to Passenger Leaving the Atm with Violence; Robbery to Pedestrian and Vehicle with Violence; Theft from Carrier and Heavy Vehicle with Violence; Theft of Machinery with Violence; Motorcycle Theft with Violence; Theft of a Transportation Service Vehicle with Violence; Theft of a Particular Service Vehicle with Violence; Theft of a Public Service Vehicle with Violence; Theft Inside a Company (Payroll) with Violence; Child Abduction; Extorsion Attempt; Homicide Attempt; Attempted Robbery; Vehicle Theft Attempt; Attempted Violation; Torture; Trafficking in Persons; Violation; Equipped Rape; Gang Rape; and Domestic Violence.]  
+
+
+
+
+### **Power calculations** 
+
+The power analysis considers the following scenarios:
+
+\
+
+#### **Case 1. Weak Effect**
+
+Sample size for a given power:
+
+* Power = 80%
+* Intervention effect = 4.6 less violent crimes
+* Corresponds to a 10% decline
+
+```{r}
+# Sample size for a given power
+p.out1 <-power.t.test(power=0.8,
+                      delta=4.6,
+                      sd=46.59,
+                      type="two.sample")
+p.out1
+```
+
+To detect an effect of -4.6 crimes with a probability of 80%, the study needs `r round(p.out1$n, digits=0)` schools in each group.
+
+Which corresponds to a total number of `r round(p.out1$n*2, digits=0)` schools.
+
+Unfortunately, the costs associated with covering such a large number of schools does not make this option feasible. 
+
+<!-- This is the plot of the optimal sample size. -->
+<!-- ```{r fig.height = 4, fig.width = 4, fig.align = "center", warning=FALSE} -->
+<!-- plot(p.out1) -->
+<!-- ``` -->
+
+\
+
+#### **Case 2. Moderate Weak Effect**
+
+Sample size for a given power:
+
+* Power = 80%
+* Intervention effect = 7.3 less violent crimes
+* Corresponds to a 15% decline
+
+```{r}
+# Sample size for a given power
+p.out2 <-power.t.test(power=0.8,
+                      delta=7.3,
+                      sd=46.59,
+                      type="two.sample")
+p.out2
+```
+
+To detect an effect of -7.3 crimes with a probability of 80%, the study needs `r round(p.out2$n, digits=0)` schools in each group.
+
+Which corresponds to a total number of `r round(p.out2$n*2, digits=0)` schools.
+
+Unfortunately, the costs associated with covering such a large number of schools does not make this option feasible. 
+
+
+<!-- This is the plot of the optimal sample size. -->
+<!-- ```{r fig.height = 4, fig.width = 4, fig.align = "center", warning=FALSE} -->
+<!-- plot(p.out2) -->
+<!-- ``` -->
+
+
+
+\
+
+#### **Case 3. Moderate Effect**
+
+Sample size for a given power:
+
+* Power = 80%
+* Intervention effect = 9.3 less violent crimes
+* Corresponds to a 20% decline
+
+```{r}
+# Sample size for a given power
+p.out3 <-power.t.test(power=0.8,
+                      delta=9.3,
+                      sd=46.59,
+                      type="two.sample")
+p.out3
+```
+
+To detect an effect of -9.3 crimes with a probability of 80%, the study needs `r round(p.out3$n, digits=0)` schools in each group.
+
+Which corresponds to a total number of `r round(p.out3$n*2, digits=0)` schools.
+
+<!-- This is the plot of the optimal sample size. -->
+<!-- ```{r fig.height = 4, fig.width = 4, fig.align = "center", warning=FALSE} -->
+<!-- plot(p.out3) -->
+<!-- ``` -->
+
+\
+
+#### **Case 4. Moderate Strong Effect**
+
+Sample size for a given power:
+
+* Power = 80%
+* Intervention effect = 12.2 less violent crimes
+* Corresponds to a 25% decline
+
+```{r}
+# Sample size for a given power
+p.out4 <-power.t.test(power=0.8,
+                      delta=12.2,
+                      sd=46.59,
+                      type="two.sample")
+p.out4
+```
+
+
+To detect an effect of -12.2 crimes with a probability of 80%, the study needs `r round(p.out4$n, digits=0)` schools in each group.
+
+Which corresponds to a total number of `r round(p.out4$n*2, digits=0)` schools.
+
+
+<!-- This is the plot of the optimal sample size. -->
+<!-- ```{r fig.height = 4, fig.width = 4, fig.align = "center", warning=FALSE} -->
+<!-- plot(p.out4) -->
+<!-- ``` -->
+
+
+\
+
+#### **Case 5. Strong Effect**
+
+Sample size for a given power:
+
+* Power = 80%
+* Intervention effect = 13.9 less violent crimes
+* Corresponds to a 30% decline
+
+```{r}
+# Sample size for a given power
+p.out5 <-power.t.test(power=0.8,
+                      delta=13.9,
+                      sd=46.59,
+                      type="two.sample")
+p.out5
+```
+
+
+To detect an effect of -13.9 crimes with a probability of 80%, the study needs `r round(p.out5$n, digits=0)` schools in each group.
+
+Which corresponds to a total number of `r round(p.out5$n*2, digits=0)` schools.
+
+
+<!-- This is the plot of the optimal sample size. -->
+<!-- ```{r fig.height = 4, fig.width = 4, fig.align = "center", warning=FALSE} -->
+<!-- plot(p.out5) -->
+<!-- ``` -->
+
+\
+
+\newpage
+
+### **Power against sample size**
+
+The following graph presents the power calculation and the optima number of observations for scenarios 3, 4, and 5. This excludes scenarios 1 and 2, which are not feasible due to their large number of schools.
+
+```{r fig.height = 4, fig.width = 5, fig.align = "center", warning=FALSE}
+# Get power calculatons
+samplesizes <- seq(from=0,to=800,by=10)
+#pwr.1 <-power.t.test(n=samplesizes,delta=4.6  ,sd=46.59,type="two.sample")$power
+#pwr.2 <-power.t.test(n=samplesizes,delta=7.3  ,sd=46.59,type="two.sample")$power
+pwr.3 <-power.t.test(n=samplesizes,delta=9.3  ,sd=46.59,type="two.sample")$power
+pwr.4 <-power.t.test(n=samplesizes,delta=12.2 ,sd=46.59,type="two.sample")$power
+pwr.5 <-power.t.test(n=samplesizes,delta=13.9 ,sd=46.59,type="two.sample")$power
+
+# Generate plot
+plot(samplesizes, pwr.3, type="b", col="skyblue1", lwd=2, axes=FALSE, ylab="", xlab="" )
+par(new=TRUE)
+plot(samplesizes, pwr.4, type="b", col="dodgerblue", lwd=2, axes=FALSE, ylab="", xlab="" )
+par(new=TRUE)
+plot(samplesizes, pwr.5,type="b", col="mediumblue", lwd=2, axes=FALSE,
+     xlim=c(0,800), xlab="Sample size", ylab="Expected power", ylim=c(0,1))
+axis(1,at=c(0,200,400,600,800))
+axis(2,at=c(0,0.2,0.4,0.6,0.8,1),labels=paste(c(0,20,40,60,80,100),"%"))
+abline(h=0.8, col="red", lty=2)
+abline(v=p.out3$n, col="skyblue1", lty=2)
+abline(v=p.out4$n, col="dodgerblue", lty=2)
+abline(v=p.out5$n, col="mediumblue", lty=2)
+legend(500, 0.3, legend=c("delta=13.9", "delta=12.2", "delta=9.3"),
+       col=c("mediumblue", "dodgerblue", "skyblue1"), lwd=2:2, lty=1:1, cex=0.8, box.lty=0)
+```
+
+
+
+
+
+### **Summary**
+
+Based on the power calculations, the following scenarios indicate the number of schools necessary to detect with 80% probability an effect within a radius of 300m.
+
+
+| Effect   | % effect | # Crimes | Schools per group | Total Schools | Feasible |
+|----------|:----------:|:----------:|:-------------:|:---------:|:---------:|
+| Weak                | -10%     | -4.6     | `r round(p.out1$n, digits=0)` | `r round(p.out1$n*2, digits=0)`    | No |
+| Moderate Weak       | -15%     | -7.3     | `r round(p.out2$n, digits=0)` | `r round(p.out2$n*2, digits=0)`    | No |
+| Moderate            | -20%     | -9.3     | `r round(p.out3$n, digits=0)` | `r round(p.out3$n*2, digits=0)`    | Yes |
+| Moderate Strong     | -25%     | -12.2    | `r round(p.out4$n, digits=0)` | `r round(p.out4$n*2, digits=0)`    | Yes |
+| Strong              | -30%     | -13.9    | `r round(p.out5$n, digits=0)` | `r round(p.out5$n*2, digits=0)`    | Yes |
+
+
+
+
+### **Selected Design**
+
+Based in the previous power calculation, the project will pursue the following research design:
+
+
+
+```{r}
+# Effect for a given power and sample size
+design.1 <-power.t.test(power=0.8,
+                      n=300,
+                      sd=46.59,
+                      type="two.sample")
+```
+
+* **Number of schools in each group = `r round(design.1$n, digits=0)`**
+* **Total number of schools = `r round(design.1$n*2, digits=0)`**
+* **Power = `r round((design.1$power)*100, digits=2)`%**
+* **Expected intervention effect = `r round(design.1$delta, digits=0)` less violent crimes**
+* **Expected effect proportion = -`r round((design.1$delta/46.59)*100, digits=2)`%**
+
+This research design represents the best possible balance between maximizing the probability of detecting a relatively moderate effect while keeping the project within the realm of cost feasibility, time of implementation, and operational capacity in the field.
+
+
+
+
+### **Alternative Approaches**
+
+To increase the probability of detecting an effect, the research team could consider the following approaches:
+
+1. **Focus on hot-spots**: 
+
+    * Conduct a preliminary analysis to identify hot-spots of violent crime around schools. 
+    * The set of hot-spots, would constitute the population from which we could draw the sample of schools for the intervention. 
+    * This assumes that schools in crime hot-spots have a higher mean and a smaller standard deviation than the ones considered here.
+    
+2. **Consider 911 calls**: 
+
+    * The analysis could consider 911 calls as indicator to assess the impact of the intervention. 
+    * This assumes that the number of 911 calls related to violent crimes is higher than the number of crimes reported in official statistics.
+
+
