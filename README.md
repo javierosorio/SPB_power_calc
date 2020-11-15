@@ -1,3 +1,2 @@
-# Power calculation for the "School Protection Brigades" project
+[Power Calculation SPB] (file:///C:/Users/javie/Box/SGPP-Osorio/Mexico%20City%20Police%202020/funding/IPA%202020/power/R/SPB_power_v4.html)
 
-This repository contains the R Markdown file detailing the precedures to conduct the power analysis for the "School Protection Brigades" project.
